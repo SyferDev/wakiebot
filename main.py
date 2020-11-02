@@ -4,19 +4,22 @@
 import os
 import mysql.connector
 import discord
+from dotenv import load_dotenv, find_dotenv
 from discord.ext import commands
 
-TOKEN = "NzcyODE0ODA5NzQ0OTMyODg0.X6AJ4A.bzhNkKpv-yIN74OG2coD4l3-alk"
+load_dotenv(find_dotenv())
+
+TOKEN = os.environ.get("TOKEN")
 PREFIX = '.'
 
 
 bot = commands.Bot(command_prefix=PREFIX, help_command=None)
 
 db = mysql.connector.connect(
-    host='sql12.freesqldatabase.com',
-    username='sql12374029',
-    password='73dFLd2GPZ',
-    database='sql12374029'
+    host = os.environ.get("DB_HOST"),
+    username = os.environ.get("DB_USRNAME"),
+    password = os.environ.get("DB_PWD"),
+    database = os.environ.get("DB_DB")
 )
 cursor = db.cursor()
 
